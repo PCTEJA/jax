@@ -121,6 +121,22 @@ jax_multiplatform_test(
 )
 
 jax_multiplatform_test(
+    name = "gelu_test",
+    srcs = ["gelu_test.py"],
+    disable_configs = DISABLED_CONFIGS,
+    shard_count = 6,
+    tags = ["cpu:4"],
+    deps = [
+        ":numerics_test_util",
+    ] + py_deps([
+        "absl/testing",
+        "mpmath",
+        "numpy",
+        "scipy",
+    ]),
+)
+
+jax_multiplatform_test(
     name = "gamma_test",
     srcs = ["gamma_test.py"],
     disable_configs = DISABLED_CONFIGS,
